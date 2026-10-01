@@ -1,7 +1,7 @@
 package liste;
 
 public class Noeud {
-    private Object element;
+    private int element;
     private Noeud suivant;
 
     public Noeud(int e, Noeud suivant) {
@@ -9,11 +9,11 @@ public class Noeud {
         this.suivant = suivant;
     }
 
-    public Object getElement() {
+    public int getElement() {
         return element;
     }
 
-    public void setElement(Object element) {
+    public void setElement(int element) {
         this.element = element;
     }
 
