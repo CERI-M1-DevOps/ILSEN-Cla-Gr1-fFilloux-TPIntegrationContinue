@@ -1,0 +1,23 @@
+name: Documentation
+on:
+  pull_request:
+    types: [closed] # se déclenche uniquement quand la PR est fermée
+    branches: [ "main" ]
+jobs:
+  documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: setup up Java 21 (Corretto)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+      - name: Générer la documentation Javadoc
+        run: mvn -B javadoc::javadoc
+      - name: Déployer la documentation sur GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/reports/apidocs
