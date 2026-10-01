@@ -1,5 +1,6 @@
 package liste;
 
+// Liste chaînée : les ajouts se font en tête, l'ordre est donc inverse à celui des insertions.
 public class ListeSimple {
     private long size;
     Noeud tete;
