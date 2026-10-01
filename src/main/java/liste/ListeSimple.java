@@ -13,7 +13,7 @@ public class ListeSimple {
         size++;
     }
 
-    public void modifiePremier(int element, Object nouvelleValeur) {
+    public void modifiePremier(int element, int nouvelleValeur) {
         Noeud courant = tete;
         while (courant != null && courant.getElement() != element)
             courant = courant.getSuivant();
@@ -21,10 +21,10 @@ public class ListeSimple {
             courant.setElement(nouvelleValeur);
     }
 
-    public void modifieTous(int element, Object nouvelleValeur) {
+    public void modifieTous(int element, int nouvelleValeur) {
         Noeud courant = tete;
         while (courant != null) {
-            if (courant.getElement().equals(element))
+            if (courant.getElement() == element)
                 courant.setElement(nouvelleValeur);
             courant = courant.getSuivant();
         }
@@ -45,14 +45,14 @@ public class ListeSimple {
 
     public void supprimePremier(int element) {
         if (tete != null) {
-            if (tete.getElement().equals(element)) {
+            if (tete.getElement() == element) {
                 tete = tete.getSuivant();
                 size--;
                 return;
             }
             Noeud precedent = tete;
             Noeud courant = tete.getSuivant();
-            while (courant != null && !courant.getElement().equals(element)) {
+            while (courant != null && courant.getElement() != element) {
                 precedent = precedent.getSuivant();
                 courant = courant.getSuivant();
             }
@@ -70,7 +70,7 @@ public class ListeSimple {
     public Noeud supprimeTousRecurs(int element, Noeud tete) {
         if (tete != null) {
             Noeud suiteListe = supprimeTousRecurs(element, tete.getSuivant());
-            if (tete.getElement().equals(element)) {
+            if (tete.getElement() == element) {
                 size--;
                 return suiteListe;
             } else {
@@ -107,8 +107,8 @@ public class ListeSimple {
     }
 
     public Noeud getPrecedent(Noeud r) {
-        if (r != null){
-            return;
+        if (r == null) {
+            return null;
         }
 
         // la liste n'est pas vide puisqu'on transmet un Node de la liste et le Node existe obligatoirement
