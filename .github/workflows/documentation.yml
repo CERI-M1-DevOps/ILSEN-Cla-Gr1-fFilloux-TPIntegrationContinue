@@ -3,8 +3,14 @@ on:
   pull_request:
     types: [closed] # se déclenche uniquement quand la PR est fermée
     branches: [ "main" ]
+
+# Autorise le GITHUB_TOKEN à pousser sur la branche gh-pages
+permissions:
+  contents: write
+
 jobs:
   documentation:
+    if: github.event.pull_request.merged == true # uniquement si la PR est fusionnée
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
